@@ -15,4 +15,4 @@ function Domanda(categoria){
 
 const Ema = new Persona("Emanuele","castani","marroni",21,true)
 console.log(Ema)
-const setDomande = new Array[Domanda];
+const setDomande = new Array[Domanda];//set di domande
