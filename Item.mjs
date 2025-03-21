@@ -8,7 +8,7 @@ function Persona(nome, coloreCapelli,stileCapelli, età, occhi, occhiali,carnagi
     this.età=età;
     this.occhi=occhi;
     this.occhiali=occhiali;
-    this.carnagione=carnagione
+    this.carnagione=carnagione;
 }
 
 function Domanda(categoria){
