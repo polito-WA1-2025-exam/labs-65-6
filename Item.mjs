@@ -1,5 +1,5 @@
 import sqlite from "sqlite3";
-import express from "express";
+import express, { response } from "express";
 "use strict";
 
 function Persona(nome, coloreCapelli,stileCapelli, età, occhi, occhiali,carnagione){
@@ -42,10 +42,42 @@ function readAllItems(filename) {
                 
             //reject(err); //rejected
         }) 
-
-    myPromise.then((persone)=>{
+        let port = 3000;
+        app.get("/ITEMS", (req, res) => {
+            db.all(sql, (err, rows) => {
+                try{
+                    res.json(rows);
+                } catch(err){
+                    res.status(500).json({error: err.message});
+                }
+            })
+        });
+        app.listen(port, ()=>{
+            console.log("Server in esecuzione su http://localhost:"+port);
+        })
+        app.get("/ITEMS/:colore", (req, res) => {
+            try{
+                const sqlColore="SELECT * FROM ITEMS WHERE coloreCapelli==?"
+                db.all(sqlColore,[req.params.colore],(err,rows)=>{
+                    try{
+                        res.json(rows);
+                    } catch(err){
+                        console.log("Server in esecuzione su http://localhost:"+port);
+                    }
+                    }) 
+                    
+            } catch(err){
+                res.status(500).json({error: err.message});
+            }
+        });
+        
+        /*app.listen(port, ()=>{
+            console.log("Server in esecuzione su http://localhost:"+port);
+        
+        
+    /*myPromise.then((persone)=>{
         console.log(persone);
-    })
+    })*/
 
 }
 
