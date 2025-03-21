@@ -13,3 +13,5 @@
 # Lab Journal
 
 (you may update this file to keep track of the progress of your group work, throughout the weeks)
+Table of the DB
+Persona(nome, coloreCapelli,stileCapelli, età, occhi, occhiali,carnagione)

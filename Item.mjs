@@ -1,4 +1,5 @@
 import sqlite from "sqlite3";
+import express from "express";
 "use strict";
 
 function Persona(nome, coloreCapelli,stileCapelli, età, occhi, occhiali,carnagione){
@@ -24,6 +25,7 @@ console.log(Ema) */
 function readAllItems(filename) {    
     const db = new sqlite.Database(filename,(err)=>{if (err) throw err;});
     const sql = 'SELECT * FROM ITEMS'
+    const app = express();
     let persone = []    //array contenente gli item, ovvero le persone da indovinare
     const myPromise =          
         new Promise((resolve,reject) => {
