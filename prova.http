@@ -1,1 +1,1 @@
-POST http://localhost:3000/ITEMS/name/Alfredo/hairColor/Red/stileCapelli/Ricci/eta/33/occhi/neri/occhiale/si/carnagione/scura/itemId/3
+POST http://localhost:3000/ITEMS/itemId/3

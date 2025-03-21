@@ -105,6 +105,16 @@ function readAllItems(filename) {
                 }   
             })
         })
+        app.post("/ITEMS/itemId/:itemId", (req,res)=>{
+            const sqlDelete="DELETE FROM ITEMS WHERE itemId=?";
+            db.run(sqlDelete,[req.params.itemId],(err)=>{
+                if(err){
+                    res.status(500).json({error: err.message});
+                } else{
+                    res.json({message: "Successful deleting"});
+                } 
+            })
+        })
         app.listen(port, ()=>{
             console.log("Server in esecuzione su http://localhost:"+port);
         })
