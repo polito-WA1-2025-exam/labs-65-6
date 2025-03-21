@@ -52,27 +52,29 @@ function readAllItems(filename) {
                 }
             })
         });
+        app.get("/ITEMS/hair-color/:colore", (req, res) => {
+            const sqlColore="SELECT * FROM ITEMS WHERE coloreCapelli==?"
+            db.all(sqlColore,[req.params.colore],(err,rows)=>{
+                try{
+                    res.json(rows);
+                } catch(err){
+                    res.status(500).json({erros: err.message});
+                }
+            }) 
+        });
+        app.get("/ITEMS/item-id/:itemId", (req, res) =>{
+            const sqlItemId="SELECT * FROM ITEMS WHERE itemId==?"
+            db.all(sqlItemId,[req.params.itemId],(err,rows)=>{
+                try{
+                    res.json(rows);
+                } catch(err){
+                    res.status(500).json({erros: err.message});
+                }
+            }) 
+        })
         app.listen(port, ()=>{
             console.log("Server in esecuzione su http://localhost:"+port);
         })
-        app.get("/ITEMS/:colore", (req, res) => {
-            try{
-                const sqlColore="SELECT * FROM ITEMS WHERE coloreCapelli==?"
-                db.all(sqlColore,[req.params.colore],(err,rows)=>{
-                    try{
-                        res.json(rows);
-                    } catch(err){
-                        console.log("Server in esecuzione su http://localhost:"+port);
-                    }
-                    }) 
-                    
-            } catch(err){
-                res.status(500).json({error: err.message});
-            }
-        });
-        
-        /*app.listen(port, ()=>{
-            console.log("Server in esecuzione su http://localhost:"+port);
         
         
     /*myPromise.then((persone)=>{

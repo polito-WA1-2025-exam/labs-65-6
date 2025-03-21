@@ -1,1 +1,1 @@
-GET http://localhost:3000/ITEMS/castani
+GET http://localhost:3000/ITEMS/item-id/2
