@@ -1,5 +1,6 @@
 import sqlite from "sqlite3";
 import express from "express";
+import e from "express";
 "use strict";
 
 function Persona(nome, coloreCapelli,stileCapelli, età, occhi, occhiali,carnagione){
@@ -24,8 +25,11 @@ console.log(Ema) */
 //const setDomande = new Array[Domanda];//set di domande
 
 // punto 2 lab 2        //promise che permette la lettura del database
-function readAllItems(filename) {    
-    const db = new sqlite.Database(filename,(err)=>{if (err) throw err;});
+
+
+
+
+function readAllItems(db) {       
     const sql = 'SELECT * FROM ITEMS'
     const app = express();
     let persone = []    //array contenente gli item, ovvero le persone da indovinare
@@ -51,5 +55,107 @@ function readAllItems(filename) {
 
 }
 
+function findAge(db) {        
+    const sql = 'SELECT * FROM ITEMS WHERE età>30'
+    const app = express();
+    let persone = []    //array contenente gli item, ovvero le persone da indovinare
+    const myPromise =          
+        new Promise((resolve,reject) => {
+            //retrieve all itemes from Items table
+            db.all(sql,(err,rows)=>{
+                if(err) throw err;
+                
+                for(let it of rows){
+                    const p = new Persona(it.nome,it.coloreCapelli,it.stileCapelli,Number(it.età),it.occhi,it.occhiali,it.carnagione)
+                    persone.push(p);     
+                }
+                resolve(persone); //fulfilled
+                }) 
+                
+            //reject(err); //rejected
+        }) 
+
+    myPromise.then((persone)=>{
+        console.log(persone);
+    })
+
+}
+
+function create(db){
+
+    const nome= 'Luca';
+    const coloreCapelli= 'neri';
+    const stileCapelli= 'moicano';
+    const età= 45;
+    const occhi= 'bianchi';
+    const occhiali= 'si';
+    const carnagione='abbronzato'
+    const sql1= 'INSERT INTO ITEMS (nome, coloreCapelli, stileCapelli, età, occhi, occhiali, carnagione) VALUES (?, ?, ?, ?, ? , ?, ?)';
+
+  let persone = [];
+
+ 
+  const myPromise1 =          
+  new Promise((resolve,reject) => {
+      //retrieve all itemes from Items table
+      db.run(sql1, [nome, coloreCapelli, stileCapelli, età, occhi, occhiali, carnagione], function(err) {
+        if (err) {
+          return console.error('Errore nell\'inserimento:', err.message);
+        }
+        console.log(`Nuovo record inserito con ID ${this.lastID}`);
+      })})
+
+  
+  const myPromise =          
+  new Promise((resolve,reject) => {
+      //retrieve all itemes from Items table
+      const sql = 'SELECT * FROM ITEMS'
+      db.all(sql,(err,rows)=>{
+          if(err) throw err;
+          
+          for(let it of rows){
+              const p = new Persona(it.nome,it.coloreCapelli,it.stileCapelli,Number(it.età),it.occhi,it.occhiali,it.carnagione)
+              persone.push(p);     
+          }
+          resolve(persone); //fulfilled
+          }) 
+          
+      //reject(err); //rejected
+  }) 
+
+  myPromise1
+    .then((lastID) => {
+      console.log(`Inserito nuovo record con ID ${lastID}`);
+      // Dopo l'inserimento, esegui la lettura dei dati
+    })
+    
+    myPromise.then((persone) => {
+      console.log("Tutti i record nel database:");
+      console.log(persone); // Stampa i record letti dal database
+    })
+    .catch((error) => {
+      console.error("Errore:", error);
+    });
+}
+
+
+
+
+
+
+    
+
+
+
+
+
 const filename = 'items.sqlite';
-readAllItems(filename)
+const prova='copia.sqlite';
+const db = new sqlite.Database(filename,(err)=>{if (err) throw err;}); 
+const copiadb= new sqlite.Database(prova,(err)=>{if (err) throw err;}); 
+//readAllItems(db);
+//findAge(db);
+create(copiadb);
+
+
+
