@@ -1,1 +1,1 @@
-GET http://localhost:3000/ITEMS/item-id/2
+POST http://localhost:3000/ITEMS/item-id/4/name/Gilda/hairColor/Neri/stileCapelli/lisci/eta/24/occhi/Neri/occhiale/No/carnagione/Chiara

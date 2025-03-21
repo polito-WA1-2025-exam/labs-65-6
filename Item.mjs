@@ -62,15 +62,28 @@ function readAllItems(filename) {
                 }
             }) 
         });
-        app.get("/ITEMS/item-id/:itemId", (req, res) =>{
+        app.get("/item-id/:itemId", (req, res) =>{
             const sqlItemId="SELECT * FROM ITEMS WHERE itemId==?"
             db.all(sqlItemId,[req.params.itemId],(err,rows)=>{
                 try{
                     res.json(rows);
                 } catch(err){
-                    res.status(500).json({erros: err.message});
+                    res.status(500).json({erros: err.message});;
                 }
             }) 
+        })
+        app.post("/ITEMS/item-id/:itemId/name/:name/hairColor/:hairColor/stileCapelli/:stileCapelli/eta/:eta/occhi/:occhi/occhiale/:occhiale/carnagione/:carnagione", (req, res)=>{
+            const sqlInsert="INSERT INTO ITEMS (itemId, nome, coloreCapelli, stileCapelli,età, occhi, occhiali, carnagione) VALUES (?,?,?,?,?,?,?,?)";
+            db.run(sqlInsert, [
+                req.params.itemId, req.params.name, req.params.hairColor, req.params.stileCapelli,
+                req.params.eta, req.params.occhi, req.params.occhiale, req.params.carnagione
+            ], (err) => {
+                if (err) {
+                    res.status(500).json({ error: err.message });
+                } else {
+                    res.json({ message: "Inserimento avvenuto con successo" });
+                }
+            });
         })
         app.listen(port, ()=>{
             console.log("Server in esecuzione su http://localhost:"+port);
