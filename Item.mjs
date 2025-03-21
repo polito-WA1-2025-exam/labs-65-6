@@ -16,7 +16,7 @@ function Domanda(categoria){
     this.categoria=categoria;
 }
 
-//branch demarco
+
 
 /* 
 const Ema = new Persona("Emanuele","castani","marroni",21,true)
