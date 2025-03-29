@@ -138,6 +138,17 @@ function create(db){
     });
 }
 
+function deleteItem(db, id){
+
+const sql= 'DELETE FROM ITEMS WHERE id = ?';
+const myPromise= new Promise((resolve, reject)=>
+{
+    db.run(sql, [id], )
+}
+)
+
+}
+
 
 
 
@@ -156,6 +167,7 @@ const copiadb= new sqlite.Database(prova,(err)=>{if (err) throw err;});
 //readAllItems(db);
 //findAge(db);
 create(copiadb);
+
 
 
 
