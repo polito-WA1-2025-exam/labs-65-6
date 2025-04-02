@@ -1,5 +1,5 @@
 import sqlite from "sqlite3";
-import express from "express";
+import express, { response } from "express";
 import e from "express";
 "use strict";
 
@@ -38,7 +38,6 @@ function readAllItems(db) {
             //retrieve all itemes from Items table
             db.all(sql,(err,rows)=>{
                 if(err) throw err;
-                
                 for(let it of rows){
                     const p = new Persona(it.nome,it.coloreCapelli,it.stileCapelli,Number(it.età),it.occhi,it.occhiali,it.carnagione)
                     persone.push(p);     
@@ -48,10 +47,88 @@ function readAllItems(db) {
                 
             //reject(err); //rejected
         }) 
-
-    myPromise.then((persone)=>{
+        let port = 3000;
+        app.get("/ITEMS", (req, res) => {
+            db.all(sql, (err, rows) => {
+                try{
+                    res.json(rows);
+                } catch(err){
+                    res.status(500).json({error: err.message});
+                }
+            })
+        });
+        app.get("/ITEMS/hairColor/:colore", (req, res) => {
+            const sqlColore="SELECT * FROM ITEMS WHERE coloreCapelli==?"
+            db.all(sqlColore,[req.params.colore],(err,rows)=>{
+                try{
+                    res.json(rows);
+                } catch(err){
+                    res.status(500).json({erros: err.message});
+                }
+            }) 
+        });
+        app.get("/ITEMS/itemId/:itemId", (req, res) =>{
+            const sqlItemId="SELECT * FROM ITEMS WHERE itemId==?"
+            db.all(sqlItemId,[req.params.itemId],(err,rows)=>{
+                try{
+                    res.json(rows);
+                } catch(err){
+                    res.status(500).json({erros: err.message});;
+                }
+            }) 
+        })
+        app.post("/ITEMS/itemId/:itemId/name/:name/hairColor/:hairColor/stileCapelli/:stileCapelli/eta/:eta/occhi/:occhi/occhiale/:occhiale/carnagione/:carnagione", (req, res)=>{
+            const sqlInsert="INSERT INTO ITEMS (itemId, nome, coloreCapelli, stileCapelli,età, occhi, occhiali, carnagione) VALUES (?,?,?,?,?,?,?,?)";
+            db.run(sqlInsert, [
+                req.params.itemId, req.params.name, req.params.hairColor, req.params.stileCapelli,
+                req.params.eta, req.params.occhi, req.params.occhiale, req.params.carnagione
+            ], (err) => {
+                if (err) {
+                    res.status(500).json({ error: err.message });
+                } else {
+                    res.json({ message: "Successful insertion" });
+                }
+            });
+        })
+        app.post("/ITEMS/name/:name/hairColor/:hairColor/stileCapelli/:stileCapelli/eta/:eta/occhi/:occhi/occhiale/:occhiale/carnagione/:carnagione/itemId/:itemId", (req, res)=>{
+            const sqlUpdate="UPDATE ITEMS SET nome = ?, coloreCapelli = ?, stileCapelli = ?, età = ?, occhi = ?, occhiali = ?, carnagione = ? WHERE itemId = ?";
+            db.run(sqlUpdate,[req.params.name, req.params.hairColor, req.params.stileCapelli,
+                req.params.eta, req.params.occhi, req.params.occhiale, req.params.carnagione, req.params.itemId],(err)=>{
+                if(err){
+                    res.status(500).json({error: err.message});
+                } else{
+                    res.json({message: "Successful updating"});
+                }   
+            })
+        })
+        app.post("/ITEMS/itemId/:itemId/name/:name", (req, res)=>{
+            const sqlUpdate="UPDATE ITEMS SET nome=? WHERE itemId=?";
+            db.run(sqlUpdate,[req.params.name, req.params.itemId],(err)=>{
+                if(err){
+                    res.status(500).json({error: err.message});
+                } else{
+                    res.json({message: "Successful updating"});
+                }   
+            })
+        })
+        app.post("/ITEMS/itemId/:itemId", (req,res)=>{
+            const sqlDelete="DELETE FROM ITEMS WHERE itemId=?";
+            db.run(sqlDelete,[req.params.itemId],(err)=>{
+                if(err){
+                    res.status(500).json({error: err.message});
+                } else{
+                    res.json({message: "Successful deleting"});
+                } 
+            })
+        })
+        app.listen(port, ()=>{
+            console.log("Server in esecuzione su http://localhost:"+port);
+        })
+        
+        
+    /*myPromise.then((persone)=>{
         console.log(persone);
-    })
+    })*/
 
 }
 
