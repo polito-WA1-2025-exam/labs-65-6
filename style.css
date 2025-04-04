@@ -11,6 +11,8 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  
 }
 
 
@@ -23,33 +25,75 @@ body {
     margin: 0;
     min-width: 320px;
     min-height: 100vh;
+    background-image: url("./assets/background.jpg");
+    background-size:cover;
+    background-position:50% 50%;
+
+
+   
   }
 
 
 .logo {
-    position:relative;
     background-image: url("./assets/GuessWhoLogo.png");
     background-position:50% 50%;
     background-size:cover;
-    width:300px;
-    height:100px;
+    width:400px;
+    height:200px;
     background-repeat: no-repeat;
 }
 
-#button-section{
-    /*border:2px solid red;*/
+h3 {
+    font-family: system-ui,Avenir;
+    font-weight: 700;
+    color : white;
 }
 
-.container-fluid {
-    border:2px solid black;
-    height:100%;
+.your-character {
+    position: relative;
+    width:60%;
+    flex:1;
+    margin:5px;
+    background-image: url("./assets/people/person1.jpeg");
+    background-position:50% 50%;
+    background-size:cover;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+    border:2px solid white;
+    border-radius : 8px;
 }
+
+#button-section {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    justify-content: space-around;
+    height:auto;
+    /*border: 2px solid red;*/
+}
+
+.button-div {
+    text-align: center;
+    margin:5px;
+    /*border:2px solid green;*/
+}
+
+
 
 button {
-    height:100px;
-    width: 100px;
-   /* border: 2px solid red;*/
+    width:50%;
+    height:100%;
+    border-radius: 24px;
+    border: 1px solid transparent;
+    padding: 0.6em 1.2em;
+    font-size: 1em;
+    font-weight: 500;
+    font-family: inherit;
+    background-color: hwb(44 23% 6%);
+    cursor: pointer;
+    border: 3px solid rgba(172, 9, 9, 0.809);
 }
+
 
 .card-container{
     display:flex;
@@ -63,6 +107,8 @@ button {
     width: 100%;
     height:90%;
     margin:8px;
+    border:1px solid white;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
 }
 
 .flexrow {
@@ -138,3 +184,23 @@ button {
     background-position:50% 50%;
     background-size: cover;
 }
+
+.match-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    
+    padding:2%;
+}
+
+.player {
+    background-image: url("assets/no-user-image-square.jpg");
+    background-position:50% 50%;
+    background-size: cover;
+    width:30%;
+    height:30%;
+    border: 2px solid hwb(44 23% 6%);
+    border-radius: 8px;
+}
+
