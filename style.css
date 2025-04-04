@@ -28,7 +28,7 @@ body {
 
 .logo {
     position:relative;
-    background-image: url("/assets/GuessWhoLogo.png");
+    background-image: url("./assets/GuessWhoLogo.png");
     background-position:50% 50%;
     background-size:cover;
     width:300px;
@@ -75,66 +75,66 @@ button {
 }
 
 .card-1 {
-    background-image: url("/assets/people/person1.jpeg");
+    background-image: url("./assets/people/person1.jpeg");
     background-position:50% 50%;
     background-size: cover;
 }
 
 .card-2 {
-    background-image: url("/assets/people/person2.jpeg");
+    background-image: url("./assets/people/person2.jpeg");
     background-position:50% 50%;
     background-size: cover;
 }
 .card-3 {
-    background-image: url("/assets/people/person3.jpeg");
+    background-image: url("./assets/people/person3.jpeg");
     background-position:50% 50%;
     background-size: cover;
 }
 .card-4 {
-    background-image: url("/assets/people/person4.jpeg");
+    background-image: url("./assets/people/person4.jpeg");
     background-position:50% 50%;
     background-size: cover;
 }
 .card-5 {
-    background-image: url("/assets/people/person5.jpeg");
+    background-image: url("./assets/people/person5.jpeg");
     background-position:50% 50%;
     background-size: cover;
 }
 .card-6 {
-    background-image: url("/assets/people/person6.jpeg");
+    background-image: url("./assets/people/person6.jpeg");
     background-position:50% 50%;
     background-size: cover;
 }
 
 .card-7 {
-    background-image: url("/assets/people/person7.jpeg");
+    background-image: url("./assets/people/person7.jpeg");
     background-position:50% 50%;
     background-size: cover;
 }
 .card-8 {
-    background-image: url("/assets/people/person8.jpeg");
+    background-image: url("./assets/people/person8.jpeg");
     background-position:50% 50%;
     background-size: cover;
 }
 .card-9 {
-    background-image: url("/assets/people/person9.jpeg");
+    background-image: url("./assets/people/person9.jpeg");
     background-position:50% 50%;
     background-size: cover;
 }
 .card-10 {
-    background-image: url("/assets/people/person10.jpeg");
+    background-image: url("./assets/people/person10.jpeg");
     background-position:50% 50%;
     background-size: cover;
 }
 
 .card-11 {
-    background-image: url("/assets/people/person11.jpeg");
+    background-image: url("./assets/people/person11.jpeg");
     background-position:50% 50%;
     background-size: cover;
 }
 
 .card-12 {
-    background-image: url("/assets/people/person12.jpeg");
+    background-image: url("./assets/people/person12.jpeg");
     background-position:50% 50%;
     background-size: cover;
 }
