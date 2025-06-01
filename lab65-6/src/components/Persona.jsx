@@ -4,7 +4,7 @@ import { Domanda } from "../model/QuestionPersonModel.mjs";
 
 function PersonaDisplay(props){
 
-    const ans= props.ans;
+    const persons= props.persons;
 
     return <Table>
         <thead>
@@ -19,7 +19,7 @@ function PersonaDisplay(props){
             </tr>
         </thead>
         <tbody>
-            {ans.map(p => <PersonaRow key={p.id} persona={p} {...props}/>)}
+            {persons.map(p => <PersonaRow key={p.id} persona={p} {...props}/>)}
         </tbody>
         
     </Table>
@@ -27,7 +27,7 @@ function PersonaDisplay(props){
 }
 
 function PersonaRow(props){
-    const a =props.ans;
+    const a =props.persona;
     return <tr> 
         <td>{a.nome}</td>
         <td>{a.coloreCapelli}</td>
