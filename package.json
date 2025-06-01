@@ -1,8 +1,9 @@
 {
   "dependencies": {
+    "bootstrap": "^5.3.6",
     "express": "^4.21.2",
     "morgan": "^1.10.0",
+    "react-bootstrap": "^2.10.10",
     "sqlite3": "^5.1.7"
-    "express": "^4.21.2"
   }
 }

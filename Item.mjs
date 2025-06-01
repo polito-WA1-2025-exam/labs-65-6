@@ -1,7 +1,12 @@
 import sqlite from "sqlite3";
+import dayjs from "dayjs";
 import express, { response } from "express";
 import e from "express";
 "use strict";
+
+const db= new sqlite.Database("items.sqlite", err =>{
+    if (err) throw err;
+})
 
 function Persona(nome, coloreCapelli,stileCapelli, età, occhi, occhiali,carnagione){
     this.nome=nome;
@@ -228,7 +233,7 @@ function create(db){
 
 const filename = 'items.sqlite';
 const prova='copia.sqlite';
-const db = new sqlite.Database(filename,(err)=>{if (err) throw err;}); 
+//const db = new sqlite.Database(filename,(err)=>{if (err) throw err;}); 
 const copiadb= new sqlite.Database(prova,(err)=>{if (err) throw err;}); 
 //readAllItems(db);
 //findAge(db);

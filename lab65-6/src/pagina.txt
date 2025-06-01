@@ -1,0 +1,4 @@
+Home Page:
+- navbar con nome gioco
+-parte con la domanda 
+- tabella con le persone 
